@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+  <title>Ola i Zuzia</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900|Odibee+Sans&display=swap&subset=latin-ext"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oxanium:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/typewriter.css' />
+  <link rel='stylesheet' href='/stylesheets/welcoming.css' />
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="typewriter">
+      <div class="typewriter__textarea"> <%
+        var list = '';
+
+        for (i = 0; i < userlist.length; i++) {
+          list += '<div class="message message-' + userlist[i].author + '" id="' + userlist[i]._id + '" ><span class="message-author">'+ userlist[i].author +'</span><img src="/images/' + userlist[i].author + '/1.jpg" class="message-img"></img><span class="message-text">'+ userlist[i].message +'</span><span class="message-date">'+ userlist[i].date.toISOString().slice(11, 19) +" "+userlist[i].date.toISOString().slice(0, 10)+'</span><a href="/'+ userlist[i]._id+'" class="button button__delete">'+"x"+'</a></div>'
+        }
+      %>
+        <%- list %></div>
+
+      <form id="addMessage" name="addmessage" method="post" action="/addmessage">
+
+        <input id="inputUserName" type="text" class="typewriter__input" placeholder="Napisz coś..." name="message" />
+
+        <button id="btnSubmit" type="submit" class="button button__enter" name="enter">Enter</button>
+
+        <input type="hidden" name="author" id="hiddenInput" value='<%= query.name%>' />
+
+
+
+
+    </div>
+    <a href="/" class="button button__exit" name="exit">exit</a>
+
+  </div>
+  <script src="/javascripts/write.js"></script>
+
+</body>
+
+</html>
